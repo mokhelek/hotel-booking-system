@@ -1,0 +1,120 @@
+
+{% load static %}
+{% load bootstrap5%}
+{% bootstrap_css%}
+{% bootstrap_javascript %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<header>
+  <!-- header inner -->
+  <div class="header" style="box-shadow: 0 0 3px ;position: relative;color: rgba(180, 179, 179, 0.856);">
+     <div class="container">
+        <div class="row">
+           <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+              <div class="full">
+                 <div class="center-desk">
+                    <div class="logo">
+                       <a href="{% url 'bookroom:home' %}">
+                          <h1 style="text-transform:none;font-size:xx-large;font-style: oblique;color: rgb(53, 53, 99);">
+                             <strong>MyHotel_>></strong>  </h1>
+                          </a>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+              <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                 <span class="navbar-toggler-icon"></span>
+                 </button>
+                 <div class="collapse navbar-collapse" id="navbarsExample04">
+                    <ul class="navbar-nav mr-auto">
+                      <li class="nav-item">
+                        <a style="color: rgb(34, 34, 63);" class="nav-link" href="/">Home</a>
+                     </li>
+                       <li class="nav-item">
+                          <a style="color: rgb(34, 34, 63);" class="nav-link" href="#">Gallery</a>
+                       </li>
+                       <li class="nav-item">
+                          <a style="color: rgb(34, 34, 63);"  class="nav-link" href="#">Rooms</a>
+                       </li>
+                       <li class="nav-item">
+                          <a style="color: rgb(34, 34, 63);"  class="nav-link" href="/#about">About</a>
+                       </li>
+                       <li class="nav-item">
+                          <a style="color: rgb(34, 34, 63);" class="nav-link" href="/#contact">Contact us</a>
+                       </li>
+                    </ul>
+                    
+                 </div>
+              </nav>
+           </div>
+        </div>
+     </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="row">
+    <h2 style="margin-top: 0.5cm;margin-bottom: 0.2cm;">{{view.name}}</h3>
+  </div>
+ 
+  <div class="row">
+    <div class="col col-md-9">
+      <div style="min-height: 10cm;overflow-y: scroll;" class="card card-body">
+        
+        <div class="row">  
+          {% for pic in view.roompictures_set.all %}
+          <div class="col col-sm-4">  
+            <div style="height: 170px;overflow: hidden;margin-bottom: 0.6cm;"> 
+             <img class="img-thumbnail" src="{{pic.picture.url}}">  
+            </div>
+          </div>
+          {% empty %}
+          <center> <h5><strong>No Pictures Yet </strong></h5> </center>  
+          {% endfor %} 
+        </div>
+        
+      </div>
+      <br>
+      <div class="row">
+        <div class="card card-body">
+          <div><h3 style="font-weight:500;font-family: sans-serif;">  price: R {{view.priceRate}} /night</h3></div>
+          <div style="width: 75%;color:rgb(73, 73, 73)">{{view.roomDescription}}</div>
+        </div>
+       
+      </div>
+    </div>
+
+    <div class="col col=sm-3">
+      
+      <div class="card card-body">
+        <h4><strong> More Rooms </strong></h4> 
+        <div class="row">
+          {% for room in allrooms %}
+          <div class="col-sm-12">
+              <a href="{%url 'bookroom:viewRoom' room.id %}"> {{room.name}} </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    
+    </div>
+  
+
+  </div>
+
+ 
+
+
+  
+</div>
+
+
+
+
+
+
+
+
+

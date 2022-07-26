@@ -1,0 +1,82 @@
+{% load static %}
+{% load bootstrap5%}
+{% bootstrap_css%}
+{% bootstrap_javascript %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<header>
+     <!-- header inner -->
+     <div class="header" style="box-shadow: 0 0 3px ;position: relative;color: rgb(211, 211, 211);">
+        <div class="container">
+           <div class="row">
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                 <div class="full">
+                    <div class="center-desk">
+                       <div class="logo">
+                          <a href="{% url 'bookroom:home' %}">
+                             <h1 style="text-transform:none;font-size:xx-large;font-style: oblique;color: rgb(53, 53, 99);">
+                                <strong>MyHotel_>></strong>  </h1>
+                             </a>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+              <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                 <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarsExample04">
+                       <ul class="navbar-nav mr-auto">
+                         <li class="nav-item">
+                           <a style="color: rgb(34, 34, 63);" class="nav-link" href="/">Home</a>
+                        </li>
+                          <li class="nav-item">
+                             <a style="color: rgb(34, 34, 63);" class="nav-link" href="#">Gallery</a>
+                          </li>
+                          <li class="nav-item">
+                             <a style="color: rgb(34, 34, 63);"  class="nav-link" href="#">Rooms</a>
+                          </li>
+                          <li class="nav-item">
+                             <a style="color: rgb(34, 34, 63);"  class="nav-link" href="/#about">About</a>
+                          </li>
+                          <li class="nav-item">
+                             <a style="color: rgb(34, 34, 63);" class="nav-link" href="/#contact">Contact us</a>
+                          </li>
+                       </ul>
+                       
+                    </div>
+                 </nav>
+              </div>
+           </div>
+        </div>
+     </div>
+   </header>
+
+ <br>  
+<div class="container"> 
+
+<h2 style="font-weight:500">{{rooms.roomType}}</h2>
+<div>
+     <h4>From: <strong>{{start}}</strong></h4>
+     
+     <h4>To: <strong>{{end}}</strong></h4>
+</div>
+
+
+<center>   
+<div class="col-sm-9" style="background-color: rgba(175, 175, 175, 0.5);padding: 1cm; margin: 1cm;border-radius: 15px 15px 15px 15px;">  
+     
+<form action="{% url 'bookroom:booking' rooms.id %}" method='post'>
+    
+     {% bootstrap_form form %}
+     {{form.media}}
+     {% csrf_token %}
+
+     {% buttons %}
+     <button class="btn btn-outline-success" name="submit">checkout_>></button>
+     {% endbuttons %}
+</form>
+</div>
+</center>
+</div>

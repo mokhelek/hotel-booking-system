@@ -1,0 +1,43 @@
+{% extends 'bookroom/main.html' %}
+{% load static %}
+{% block content %}
+ <center><h2>Available Rooms</h2></center>
+
+
+ <div class = "container">
+        
+    <div class = "row">
+        {% for room in rooms %}
+        {% if room.room_available is True %}
+        <div class = "col-lg-3">
+            <br>
+            <div style="box-shadow: 0 0 10px #626cfb;" class="card card-body">
+                <img src = "{% static 'images/hotel.jpg' %}">
+                <hr>
+                <div style=" position:relative; ">
+                    {% if room.room_available is True %}
+                        status: <div style="color: green ;">available</div>
+                    {% else %}
+                        status:<div style="color: red ;">unavailable</div> 
+                    {% endif %}
+                </div>
+                <div>
+                    price: R{{room.priceRate}} p/night
+                </div>
+                <a class ="btn btn-outline-primary btn-sm" href ="{% url 'bookroom:viewRoom' room.id %}">View Room _>></a>
+                {% if room.room_available is True %}
+                <a class ="btn btn-outline-success btn-sm" href ="{% url 'bookroom:booking' room.id %}">Book Room + _>></a>
+                {% endif%}
+                <hr>
+                <div style="color: rgb(12, 95, 248);">{{room.roomType}}</div>
+            </div>
+        </div>
+          {% endif  %}
+        {% endfor %}
+    </div>
+
+</div>
+
+
+
+    {% endblock content%}
